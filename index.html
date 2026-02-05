@@ -3,32 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Happy Valentine's Day</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
-    
-
 </head>
 <body>
+    <!-- DEVELOPER NAVIGATION MENU (Remove before final deployment) -->
+    <div id="dev-nav">
+        <button data-screen="screen1" onclick="jumpToScreen('screen1')">Hey pookie</button>
+        <button data-screen="screen2" onclick="jumpToScreen('screen2')">W u be my</button>
+        <button data-screen="screen3" onclick="jumpToScreen('screen3')">Yes->HEHEHEH uwu</button>
+        <button data-screen="screen4" onclick="jumpToScreen('screen4')">Rose</button>
+        <button data-screen="screen5" onclick="jumpToScreen('screen5')">Selfie</button>
+        <button data-screen="screen6" onclick="jumpToScreen('screen6')">uploaded/button>
+        <button data-screen="screen7" onclick="jumpToScreen('screen7')">no-></button>
+        <button data-screen="screen8" onclick="jumpToScreen('screen8')">No choice</button>
+        <button data-screen="screen9" onclick="jumpToScreen('screen9')">Thank you</button>
+    </div>
+
     <div id="hearts-container"></div>
-    <div class="intro-screen" id = "intro">
-
-    <h1>Oe 1 </h1>
-    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
- 
-    </div>
-
-    <div class="main-screen" id="main">
-        <img src="">
-        <h1>Ask 2</h1>
-        <div class="button">
-            <button class="yes" onclick="yesClick()"> 1 </button>
-            <button class="no" onclick="noClick()"> 2 </button>
-        </div> 
-    </div>
-
-
     
+    <!-- Screen 1: hey Pokki -->
+    <div class="screen active" id="screen1">
+        <h1>hey Pokki</h1>
+        <video autoplay loop muted playsinline>
+            <source src="video1.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Screen 2: Will you be my valentine -->
+    <div class="screen" id="screen2">
+        <h1>Will you be my valentine</h1>
+        <video autoplay loop muted playsinline>
+            <source src="video2.mp4" type="video/mp4">
+        </video>
+        <div class="buttons">
+            <button class="yes" onclick="screen2Yes()">Y</button>
+            <button class="no" onclick="screen2No()">N</button>
+        </div>
+    </div>
+
+    <!-- Screen 3: Yayy -->
+    <div class="screen" id="screen3">
+        <h1>Yayy</h1>
+        <video autoplay loop muted playsinline>
+            <source src="video3.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Screen 4: Heres a rose -->
+    <div class="screen" id="screen4">
+        <h1>Heres a rose</h1>
+        <video autoplay loop muted playsinline>
+            <source src="video4.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Screen 5: Almost there! need a selfie -->
+    <div class="screen" id="screen5">
+        <h1>Almost there!<br>need a selfie</h1>
+        <input type="file" id="fileUpload" accept="image/*" onchange="handleUpload()">
+        <label for="fileUpload" class="upload-btn">Upload</label>
+    </div>
+
+    <!-- Screen 6: Happy (display uploaded picture) -->
+    <div class="screen" id="screen6">
+        <h1>Happy</h1>
+        <img id="uploadedImage" src="" alt="Your selfie">
+        <p>take this ss and send it to me.<br>or else me:</p>
+        <video autoplay loop muted playsinline class="last-video">
+            <source src="video_last.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Screen 7: Oh no, Be my valentine -->
+    <div class="screen" id="screen7">
+        <h1>Oh no,<br>Be my valentine</h1>
+        <video autoplay loop muted playsinline>
+            <source src="video2_1.mp4" type="video/mp4">
+        </video>
+        <div class="buttons">
+            <button class="yes" onclick="screen7Yes()">Y</button>
+            <button class="no" onclick="screen7No()">N</button>
+        </div>
+    </div>
+
+    <!-- Screen 8: No choice -->
+    <div class="screen" id="screen8">
+        <h1>No choice</h1>
+        <video autoplay loop muted playsinline>
+            <source src="video2_2.mp4" type="video/mp4">
+        </video>
+        <div class="buttons">
+            <button class="yes" onclick="screen8Yes()">Y</button>
+            <button class="yes" onclick="screen8Yes()">Y</button>
+        </div>
+    </div>
+
+    <!-- Screen 9: Thank you -->
+    <div class="screen" id="screen9">
+        <h1>Thank you</h1>
+        <video autoplay loop muted playsinline>
+            <source src="video_thankyou.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
