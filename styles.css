@@ -7,11 +7,12 @@
 
 body {
     height: 100vh;
+    width: 100vw;
     background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow: hidden;  /* Prevent page scrolling */
     position: relative;
 }
 
@@ -43,12 +44,18 @@ body {
     }
 }
 
-/* Screen base styles */
+/* 
+===========================================
+SCREEN LAYOUT - OPTIMIZED FOR iPAD 11"
+===========================================
+Everything fits on one screen, no scrolling needed
+Content scales automatically
+*/
 .screen {
     position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center;  /* Center vertically */
     align-items: center;
     z-index: 5;
     opacity: 0;
@@ -56,7 +63,9 @@ body {
     transition: opacity 1s ease;
     text-align: center;
     padding: 20px;
-    max-width: 90%;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;  /* No scrolling */
 }
 
 .screen.active {
@@ -66,51 +75,55 @@ body {
 
 /* 
 ===========================================
-HEADING TEXT STYLES
+HEADING - RESPONSIVE SIZE
 ===========================================
-Adjust font-size to make text bigger/smaller
-Adjust color to change text color
+Scales down automatically if too long
 */
 .screen h1 {
-    font-size: 2.5rem;  /* CHANGE THIS: Make text bigger (e.g., 3rem) or smaller (e.g., 2rem) */
-    color: #ff1493;  /* CHANGE THIS: Text color (try #ff69b4 for lighter pink, #c71585 for darker) */
+    font-size: 2.2rem;  /* Slightly smaller for iPad */
+    color: #ff1493;
     text-shadow: 
         2px 2px 4px rgba(255, 255, 255, 0.9),
         -1px -1px 2px rgba(255, 255, 255, 0.6),
         0 0 15px rgba(255, 20, 147, 0.5);
     animation: pop 1.2s ease;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    max-width: 90%;
+    line-height: 1.3;
 }
 
 /* 
 ===========================================
-VIDEO SIZE CONTROLS - OPTIMIZED FOR iPAD
+VIDEO SIZE - PERFECT FOR iPAD 11"
 ===========================================
-To make videos smaller/bigger, change these values:
-- width: percentage of screen (try 40%, 50%, 60%)
-- max-width: maximum size in pixels (try 400px, 450px, 500px)
-
-Current settings optimized for iPad 11-inch
+Optimized to fit screen with room for text and buttons
+ADJUST HERE: Change max-width to make bigger/smaller
 */
 .screen video {
-    width: 50%;  /* CHANGE THIS: Video width as % of screen (40% = smaller, 60% = bigger) */
-    max-width: 400px;  /* CHANGE THIS: Maximum video size in pixels (350px = smaller, 450px = bigger) */
+    width: 45%;  /* Percentage of screen width */
+    max-width: 380px;  /* Maximum size - CHANGE THIS (300-450px) */
+    max-height: 50vh;  /* Never exceed 50% of screen height */
     border-radius: 20px;
     animation: fadeIn 1.5s ease;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    object-fit: cover;  /* Maintains aspect ratio */
+    margin: 10px 0;
 }
 
 /* 
 ===========================================
-IMAGE SIZE CONTROLS - OPTIMIZED FOR iPAD
+IMAGE SIZE
 ===========================================
 */
 .screen img {
-    width: 50%;  /* CHANGE THIS: Image width */
-    max-width: 400px;  /* CHANGE THIS: Maximum image size */
+    width: 45%;
+    max-width: 380px;
+    max-height: 45vh;
     border-radius: 20px;
     animation: fadeIn 1.5s ease;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    margin: 10px 0;
 }
 
 @keyframes pop {
@@ -136,22 +149,27 @@ IMAGE SIZE CONTROLS - OPTIMIZED FOR iPAD
     }
 }
 
-/* Yes/No Buttons */
+/* 
+===========================================
+YES/NO BUTTONS
+===========================================
+*/
 .buttons {
-    margin-top: 25px;
+    margin-top: 15px;
     display: flex;
     gap: 15px;
     width: 100%;
     max-width: 300px;
     justify-content: center;
+    flex-shrink: 0;  /* Don't shrink buttons */
 }
 
 button {
-    height: 55px;
-    width: 100px;
+    height: 50px;
+    width: 90px;
     border-radius: 30px;
     border: none;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     font-family: 'Pacifico', cursive;
@@ -186,22 +204,27 @@ button:active {
     background: #888;
 }
 
-/* Navigation Buttons */
+/* 
+===========================================
+NAVIGATION BUTTONS
+===========================================
+*/
 .nav-buttons {
-    margin-top: 25px;
+    margin-top: 15px;
     display: flex;
-    gap: 15px;
+    gap: 12px;
     width: 100%;
     max-width: 400px;
     justify-content: center;
+    flex-shrink: 0;  /* Don't shrink buttons */
 }
 
 .next-btn, .back-btn, .restart-btn {
-    padding: 12px 30px;
+    padding: 10px 25px;
     background: #9b59b6;
     color: white;
     border-radius: 30px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(155, 89, 182, 0.5);
     transition: all 0.3s ease;
@@ -226,21 +249,26 @@ button:active {
     box-shadow: 0 6px 20px rgba(231, 76, 60, 0.7);
 }
 
-/* Screen 5: Upload */
+/* 
+===========================================
+SCREEN 5: UPLOAD BUTTON
+===========================================
+*/
 #fileUpload {
     display: none;
 }
 
 .upload-btn {
-    margin-top: 30px;
-    padding: 15px 40px;
+    margin-top: 20px;
+    padding: 12px 35px;
     background: #ff4d6d;
     color: white;
     border-radius: 30px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     cursor: pointer;
     box-shadow: 0 0 15px rgba(255, 77, 109, 0.8);
     transition: transform 0.2s ease;
+    display: inline-block;
 }
 
 .upload-btn:hover {
@@ -250,64 +278,91 @@ button:active {
 
 /* 
 ===========================================
-SCREEN 6 SPECIFIC STYLES - OPTIMIZED FOR iPAD
+SCREEN 6: SPECIAL LAYOUT
 ===========================================
+This screen has more content, so sizes are adjusted
 */
+#screen6 {
+    justify-content: flex-start;  /* Start from top for this screen */
+    padding-top: 30px;
+    overflow-y: auto;  /* Allow scroll ONLY on this screen if needed */
+}
+
 #screen6 p {
-    margin-top: 20px;
-    font-size: 1.2rem;  /* CHANGE THIS: Paragraph text size */
+    margin: 10px 0;
+    font-size: 1.1rem;
     color: #ff1493;
     text-shadow: 
         1px 1px 2px rgba(255, 255, 255, 0.9),
         0 0 10px rgba(255, 20, 147, 0.4);
+    max-width: 90%;
 }
 
-/* Last video on screen 6 */
+/* Video on screen 6 - smaller to fit with image */
 #screen6 .last-video {
-    width: 50%;  /* CHANGE THIS: Video width */
-    max-width: 400px;  /* CHANGE THIS: Max video size */
-    margin-top: 15px;
-    margin-bottom: 15px;
+    width: 40%;
+    max-width: 300px;
+    max-height: 35vh;
+    margin: 10px 0;
 }
 
-/* Sad image on screen 6 */
+/* Sad image on screen 6 - small */
 #screen6 .sad-img {
-    width: 30%;  /* CHANGE THIS: Sad image width */
-    max-width: 150px;  /* CHANGE THIS: Max sad image size */
-    margin-top: 10px;
+    width: 25%;
+    max-width: 120px;
+    max-height: 120px;
+    margin: 5px 0;
 }
 
 /* Uploaded selfie image on screen 6 */
 #uploadedImage {
-    width: 50%;  /* CHANGE THIS: Uploaded image width */
-    max-width: 350px;  /* CHANGE THIS: Max uploaded image size */
+    width: 40%;
+    max-width: 300px;
+    max-height: 35vh;
     border-radius: 20px;
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 /* 
 ===========================================
-RESPONSIVE DESIGN (Mobile Phones)
+RESPONSIVE: SMALLER iPADS & PHONES
 ===========================================
 */
 @media (max-width: 768px) {
     .screen h1 {
-        font-size: 1.8rem;  /* Smaller text on mobile */
+        font-size: 1.6rem;
     }
     
     .screen video,
     .screen img {
-        width: 80%;  /* Wider on mobile */
-        max-width: 300px;  /* Smaller max size on mobile */
+        width: 60%;
+        max-width: 280px;
+    }
+    
+    button {
+        height: 45px;
+        width: 80px;
+        font-size: 1rem;
     }
     
     .nav-buttons {
-        flex-direction: column;
-        gap: 10px;
+        flex-wrap: wrap;
+    }
+}
+
+/* 
+===========================================
+LANDSCAPE MODE (iPAD ROTATED)
+===========================================
+*/
+@media (orientation: landscape) {
+    .screen video,
+    .screen img {
+        max-height: 60vh;  /* More height available in landscape */
     }
     
-    .next-btn, .back-btn, .restart-btn {
-        width: 100%;
-        max-width: 200px;
+    .screen h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
     }
 }
