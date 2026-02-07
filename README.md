@@ -138,6 +138,29 @@ Created with love for Pokkie 🥰
 
 This is a personal project created for Valentine's Day 2025 💕
 
+## ⚠️ Copyright Disclaimer
+
+**Important Notice:**
+
+The videos and images used in this project are sourced from TikTok and Google and are subject to their respective copyright holders. This project is created for:
+
+- **Personal use only** - Not for commercial purposes
+- **Educational purposes** - Learning web development
+- **Private sharing** - Intended for one recipient
+
+**Media Attribution:**
+- Videos: Sourced from TikTok (copyright belongs to original creators)
+- Images: Sourced from Google Images (copyright belongs to original creators)
+
+**If you are a copyright holder and have concerns about the use of your content in this project, please contact me and I will promptly remove it.**
+
+### For Others Using This Code:
+If you fork or use this repository:
+- **Replace all media files** with your own content or properly licensed media
+- Do not redistribute the included videos/images
+- The code itself (HTML, CSS, JS) can be used and modified freely
+- Give credit if you use the code structure
+
 ---
 
 **Made with ❤️ and lots of emojis!**
