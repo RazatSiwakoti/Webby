@@ -23,134 +23,114 @@ setInterval(() => {
     }, 12000);
 }, 300);
 
-// Developer function to jump to any screen (Remove before deployment)
-function jumpToScreen(screenId) {
-    // Hide all screens
+/* 
+===========================================
+NAVIGATION FUNCTION
+===========================================
+This function:
+1. Stops ALL videos from playing
+2. Hides all screens
+3. Shows the selected screen
+4. Plays ONLY the current screen's video
+*/
+function goToScreen(screenId) {
+    // STEP 1: Stop all videos and reset them
+    document.querySelectorAll('video').forEach(video => {
+        video.pause();           // Stop the video
+        video.currentTime = 0;   // Reset to beginning
+        video.muted = true;      // Mute it
+    });
+    
+    // STEP 2: Hide all screens
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
     });
     
-    // Show selected screen
+    // STEP 3: Show the selected screen
     const targetScreen = document.getElementById(screenId);
     targetScreen.classList.add('active');
     
-    // Play video if exists
+    // STEP 4: Play ONLY the current screen's video with sound
     const video = targetScreen.querySelector('video');
     if (video) {
-        video.currentTime = 0;
-        video.play();
+        video.currentTime = 0;    // Start from beginning
+        video.muted = false;      // Unmute for sound
+        
+        // Try to play with sound
+        video.play().catch(err => {
+            // If browser blocks autoplay with sound, play muted
+            console.log("Autoplay with sound blocked, playing muted");
+            video.muted = true;
+            video.play();
+        });
     }
-    
-    // Update dev nav button states
-    updateDevNavButtons(screenId);
 }
 
-// Helper function to update dev navigation button states
-function updateDevNavButtons(activeScreenId) {
-    // Remove active class from all buttons
-    document.querySelectorAll('#dev-nav button').forEach(btn => {
-        btn.classList.remove('active-screen');
+/* 
+===========================================
+PAGE LOAD - Start on Screen 1
+===========================================
+*/
+window.addEventListener('load', () => {
+    // Stop all videos first
+    document.querySelectorAll('video').forEach(video => {
+        video.pause();
+        video.currentTime = 0;
     });
     
-    // Add active class to current screen button
-    const activeButton = document.querySelector(`#dev-nav button[data-screen="${activeScreenId}"]`);
-    if (activeButton) {
-        activeButton.classList.add('active-screen');
-    }
-}
-
-// Helper function to transition between screens
-function transitionTo(nextScreenId, delay = 500) {
-    // Hide current screen
-    document.querySelector('.screen.active').classList.remove('active');
-    
-    // Show next screen after delay
-    setTimeout(() => {
-        const nextScreen = document.getElementById(nextScreenId);
-        nextScreen.classList.add('active');
-        
-        // Play video if exists
-        const video = nextScreen.querySelector('video');
-        if (video) {
-            video.currentTime = 0; // Reset video to start
-            video.play();
-        }
-        
-        // Update dev nav button states
-        updateDevNavButtons(nextScreenId);
-    }, delay);
-}
-
-// Start: Screen 1 loads and plays video
-window.addEventListener('load', () => {
+    // Play only screen 1's video
     const video1 = document.querySelector('#screen1 video');
     if (video1) {
-        video1.play();
+        video1.muted = false;  // Try with sound
+        video1.play().catch(err => {
+            // If autoplay with sound fails, play muted
+            console.log("Autoplay with sound blocked, playing muted");
+            video1.muted = true;
+            video1.play();
+        });
     }
-    
-    // Set initial button state
-    updateDevNavButtons('screen1');
-    
-    // Auto-transition from screen 1 to screen 2 after 3 seconds
-    setTimeout(() => {
-        transitionTo('screen2', 500);
-    }, 3000);
 });
 
-// Screen 2: Will you be my valentine
+/* 
+===========================================
+SCREEN 2 BUTTON FUNCTIONS
+===========================================
+*/
 function screen2Yes() {
-    transitionTo('screen3', 500);
-    
-    // Auto-transition from screen 3 to screen 4 after 3 seconds
-    setTimeout(() => {
-        transitionTo('screen4', 500);
-    }, 3500);
-    
-    // Auto-transition from screen 4 to screen 5 after 6 seconds total
-    setTimeout(() => {
-        transitionTo('screen5', 500);
-    }, 6500);
+    goToScreen('screen3');  // Go to "Yayy" screen
 }
 
 function screen2No() {
-    transitionTo('screen7', 500);
+    goToScreen('screen7');  // Go to "Oh no" screen
 }
 
-// Screen 7: Oh no, Be my valentine
+/* 
+===========================================
+SCREEN 7 BUTTON FUNCTIONS
+===========================================
+*/
 function screen7Yes() {
-    transitionTo('screen3', 500);
-    
-    // Auto-transition from screen 3 to screen 4 after 3 seconds
-    setTimeout(() => {
-        transitionTo('screen4', 500);
-    }, 3500);
-    
-    // Auto-transition from screen 4 to screen 5 after 6 seconds total
-    setTimeout(() => {
-        transitionTo('screen5', 500);
-    }, 6500);
+    goToScreen('screen3');  // Go to "Yayy" screen
 }
 
 function screen7No() {
-    transitionTo('screen8', 500);
+    goToScreen('screen8');  // Go to "No choice" screen
 }
 
-// Screen 8: No choice (both buttons say Y)
+/* 
+===========================================
+SCREEN 8 BUTTON FUNCTION
+===========================================
+*/
 function screen8Yes() {
-    transitionTo('screen3', 500);
-    
-    // Auto-transition from screen 3 to screen 4 after 3 seconds
-    setTimeout(() => {
-        transitionTo('screen4', 500);
-    }, 3500);
-    
-    // Auto-transition from screen 4 to screen 5 after 6 seconds total
-    setTimeout(() => {
-        transitionTo('screen5', 500);
-    }, 6500);
+    goToScreen('screen3');  // Both buttons go to "Yayy" screen
 }
 
-// Screen 5: Handle file upload
+/* 
+===========================================
+SCREEN 5 - FILE UPLOAD HANDLER
+===========================================
+*/
 function handleUpload() {
     const fileInput = document.getElementById('fileUpload');
     const file = fileInput.files[0];
@@ -160,13 +140,8 @@ function handleUpload() {
         reader.onload = function(e) {
             // Set the uploaded image
             document.getElementById('uploadedImage').src = e.target.result;
-            // Transition to screen 6
-            transitionTo('screen6', 500);
-            
-            // Auto-transition from screen 6 to screen 9 (Thank you) after 5 seconds
-            setTimeout(() => {
-                transitionTo('screen9', 500);
-            }, 5500);
+            // Go to screen 6
+            goToScreen('screen6');
         };
         reader.readAsDataURL(file);
     }

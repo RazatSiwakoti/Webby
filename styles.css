@@ -5,45 +5,6 @@
     font-family: 'Pacifico', cursive;
 }
 
-/* Developer Navigation Menu - Remove before deployment */
-#dev-nav {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 9999;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    max-width: 500px;
-}
-
-#dev-nav button {
-    padding: 5px 10px;
-    background: #ff4d6d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-family: Arial, sans-serif;
-    height: auto;
-    width: auto;
-}
-
-#dev-nav button:hover {
-    background: #ff3355;
-}
-
-#dev-nav button.active-screen {
-    background: #00ff00;
-    color: black;
-    font-weight: bold;
-    box-shadow: 0 0 10px #00ff00;
-}
-
 body {
     height: 100vh;
     background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
@@ -95,6 +56,7 @@ body {
     transition: opacity 1s ease;
     text-align: center;
     padding: 20px;
+    max-width: 90%;
 }
 
 .screen.active {
@@ -102,26 +64,53 @@ body {
     pointer-events: all;
 }
 
+/* 
+===========================================
+HEADING TEXT STYLES
+===========================================
+Adjust font-size to make text bigger/smaller
+Adjust color to change text color
+*/
 .screen h1 {
-    font-size: 2.5rem;
-    color: white;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    font-size: 2.5rem;  /* CHANGE THIS: Make text bigger (e.g., 3rem) or smaller (e.g., 2rem) */
+    color: #ff1493;  /* CHANGE THIS: Text color (try #ff69b4 for lighter pink, #c71585 for darker) */
+    text-shadow: 
+        2px 2px 4px rgba(255, 255, 255, 0.9),
+        -1px -1px 2px rgba(255, 255, 255, 0.6),
+        0 0 15px rgba(255, 20, 147, 0.5);
     animation: pop 1.2s ease;
     margin-bottom: 20px;
 }
 
+/* 
+===========================================
+VIDEO SIZE CONTROLS - OPTIMIZED FOR iPAD
+===========================================
+To make videos smaller/bigger, change these values:
+- width: percentage of screen (try 40%, 50%, 60%)
+- max-width: maximum size in pixels (try 400px, 450px, 500px)
+
+Current settings optimized for iPad 11-inch
+*/
 .screen video {
-    width: 60%;
-    max-width: 280px;
+    width: 50%;  /* CHANGE THIS: Video width as % of screen (40% = smaller, 60% = bigger) */
+    max-width: 400px;  /* CHANGE THIS: Maximum video size in pixels (350px = smaller, 450px = bigger) */
     border-radius: 20px;
     animation: fadeIn 1.5s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* 
+===========================================
+IMAGE SIZE CONTROLS - OPTIMIZED FOR iPAD
+===========================================
+*/
 .screen img {
-    width: 60%;
-    max-width: 280px;
+    width: 50%;  /* CHANGE THIS: Image width */
+    max-width: 400px;  /* CHANGE THIS: Maximum image size */
     border-radius: 20px;
     animation: fadeIn 1.5s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes pop {
@@ -147,7 +136,7 @@ body {
     }
 }
 
-/* Buttons */
+/* Yes/No Buttons */
 .buttons {
     margin-top: 25px;
     display: flex;
@@ -159,12 +148,13 @@ body {
 
 button {
     height: 55px;
-    width: 80px;
+    width: 100px;
     border-radius: 30px;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Pacifico', cursive;
 }
 
 button:active {
@@ -196,6 +186,46 @@ button:active {
     background: #888;
 }
 
+/* Navigation Buttons */
+.nav-buttons {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+}
+
+.next-btn, .back-btn, .restart-btn {
+    padding: 12px 30px;
+    background: #9b59b6;
+    color: white;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.5);
+    transition: all 0.3s ease;
+    font-family: 'Pacifico', cursive;
+    height: auto;
+    width: auto;
+}
+
+.next-btn:hover, .back-btn:hover, .restart-btn:hover {
+    background: #8e44ad;
+    box-shadow: 0 6px 20px rgba(155, 89, 182, 0.7);
+    transform: translateY(-2px);
+}
+
+.restart-btn {
+    background: #e74c3c;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.5);
+}
+
+.restart-btn:hover {
+    background: #c0392b;
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.7);
+}
+
 /* Screen 5: Upload */
 #fileUpload {
     display: none;
@@ -218,23 +248,66 @@ button:active {
     box-shadow: 0 0 25px rgba(255, 77, 109, 1);
 }
 
-/* Screen 6: Display uploaded image */
+/* 
+===========================================
+SCREEN 6 SPECIFIC STYLES - OPTIMIZED FOR iPAD
+===========================================
+*/
 #screen6 p {
     margin-top: 20px;
-    font-size: 1.2rem;
-    color: white;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;  /* CHANGE THIS: Paragraph text size */
+    color: #ff1493;
+    text-shadow: 
+        1px 1px 2px rgba(255, 255, 255, 0.9),
+        0 0 10px rgba(255, 20, 147, 0.4);
 }
 
+/* Last video on screen 6 */
 #screen6 .last-video {
-    width: 40%;
-    max-width: 150px;
+    width: 50%;  /* CHANGE THIS: Video width */
+    max-width: 400px;  /* CHANGE THIS: Max video size */
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 
+/* Sad image on screen 6 */
+#screen6 .sad-img {
+    width: 30%;  /* CHANGE THIS: Sad image width */
+    max-width: 150px;  /* CHANGE THIS: Max sad image size */
+    margin-top: 10px;
+}
+
+/* Uploaded selfie image on screen 6 */
 #uploadedImage {
-    width: 70%;
-    max-width: 300px;
+    width: 50%;  /* CHANGE THIS: Uploaded image width */
+    max-width: 350px;  /* CHANGE THIS: Max uploaded image size */
     border-radius: 20px;
-    margin-bottom: 10px;
+    margin: 15px 0;
+}
+
+/* 
+===========================================
+RESPONSIVE DESIGN (Mobile Phones)
+===========================================
+*/
+@media (max-width: 768px) {
+    .screen h1 {
+        font-size: 1.8rem;  /* Smaller text on mobile */
+    }
+    
+    .screen video,
+    .screen img {
+        width: 80%;  /* Wider on mobile */
+        max-width: 300px;  /* Smaller max size on mobile */
+    }
+    
+    .nav-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .next-btn, .back-btn, .restart-btn {
+        width: 100%;
+        max-width: 200px;
+    }
 }
